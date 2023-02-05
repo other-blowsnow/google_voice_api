@@ -24,7 +24,7 @@ function getkey(){
         url: 'https://voice.google.com/u/0/messages',
         method: 'get',
     }).then(res => {
-        // 正则匹配  ["client_flags.response","https://www.googleapis.com","AIzaSyDTYc1N4xiODyrQYK0Kl6g_y279LjYkrBg",  AIzaSyDTYc1N4xiODyrQYK0Kl6g_y279LjYkrBg
+        // 正则匹配  ["client_flags.response","https://www.googleapis.com","xxxxxxxxxxxxxxxxx"
         let reg = /client_flags\.response","(.*?)","(.*?)"/;
         let arr = res.data.match(reg);
         if (arr) {
@@ -66,8 +66,6 @@ function requestApi(options){
     });
 }
 async function sendSms(phone, content) {
-    // https://clients6.google.com/voice/v1/voiceclient/api2thread/sendsms?alt=protojson&key=AIzaSyDTYc1N4xiODyrQYK0Kl6g_y279LjYkrBg
-    // [null,null,null,null,"2333331111","t.+18022761195",[],null,[54156811930730]]
     // 随机生成15个数字  261537551327528
     let rand = Math.random().toString().slice(2, 17);
     let res = await requestApi({
@@ -77,8 +75,6 @@ async function sendSms(phone, content) {
     })
 }
 async function updateReadSms(phone) {
-    // https://clients6.google.com/voice/v1/voiceclient/thread/batchupdateattributes?alt=protojson&key=AIzaSyDTYc1N4xiODyrQYK0Kl6g_y279LjYkrBg
-    // [[[["t.+18022761195",null,null,true,[]],[null,null,null,true],1]]]
     let res = await requestApi({
         url: "/v1/voiceclient/thread/batchupdateattributes",
         method: "post",
@@ -86,8 +82,6 @@ async function updateReadSms(phone) {
     })
 }
 async function checkSmsNew(lastId = null) {
-    // https://clients6.google.com/voice/v1/voiceclient/api2thread/list?alt=protojson&key=AIzaSyDTYc1N4xiODyrQYK0Kl6g_y279LjYkrBg
-    // [1,10,15,null,"v1-0-1675568188274628",[null,true,true]]
     // [0][0][1]  = 0 未读  1已读
     let res = await requestApi({
         url: "/v1/voiceclient/api2thread/list",
