@@ -27,4 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: node main.js
+    - name: Run a one-line script
+      env: # Or as an environment variable
+        COOKIE: ${{ secrets.COOKIE }}
+      run: node main.js

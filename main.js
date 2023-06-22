@@ -2,8 +2,9 @@ import axios from "axios";
 import sha1 from "sha1";
 import fs from "fs";
 
+console.log(process.env);
 const BASE_API_URL = "https://clients6.google.com/voice";
-const cookie = process.env.COOKIE.trim();
+const cookie = process.env.COOKIE;
 const getCookie = (name) => {
     let reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
     let arr = cookie.match(reg);
