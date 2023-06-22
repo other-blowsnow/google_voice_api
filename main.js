@@ -3,7 +3,7 @@ import sha1 from "sha1";
 import fs from "fs";
 
 const BASE_API_URL = "https://clients6.google.com/voice";
-const cookie = fs.readFileSync("./cookie.txt", "utf-8").trim();
+const cookie = process.env.COOKIE.trim();
 const getCookie = (name) => {
     let reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
     let arr = cookie.match(reg);
