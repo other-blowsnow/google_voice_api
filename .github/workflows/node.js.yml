@@ -10,6 +10,10 @@ on:
     branches: [ "master" ]
   schedule:
     - cron: '0/5 * * * *'
+
+env:
+  COOKIE: ${{ secrets.COOKIE }}
+
 jobs:
   build:
 
@@ -28,6 +32,4 @@ jobs:
         cache: 'npm'
     - run: npm install
     - name: Run a one-line script
-      env: # Or as an environment variable
-        COOKIE: ${{ secrets.COOKIE }}
       run: node main.js
