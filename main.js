@@ -142,8 +142,6 @@ async function handle(){
             console.log("发送失败", item.phone);
         }
     }
-
-    setTimeout(handle, 5000);
 }
 
 async function main() {
