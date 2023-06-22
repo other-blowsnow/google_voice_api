@@ -2,7 +2,6 @@ import axios from "axios";
 import sha1 from "sha1";
 import fs from "fs";
 
-console.log(process.env);
 const BASE_API_URL = "https://clients6.google.com/voice";
 const cookie = process.env.COOKIE;
 const getCookie = (name) => {
@@ -139,7 +138,7 @@ async function handle(){
             await updateReadSms(item.phone);
             await sendSms(item.phone, await getContent());
         }catch (e){
-            console.log("发送失败", item.phone);
+            console.log("发送失败", item.phone, e.message);
         }
     }
 }
