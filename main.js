@@ -150,7 +150,7 @@ async function main() {
 
     console.log("key", tempKey);
 
-    setTimeout(handle, 5000);
+    await handle();
 }
 
 main();
